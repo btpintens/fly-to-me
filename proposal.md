@@ -64,3 +64,7 @@ The user can include this app with their invitations to better organize and comm
 With the information provided guests/attendees can use this to plan among themselves additional travel/lodging
 
 The platform will seamlessly provide information the guests need/want without needing the host to facilitate (ex: how many people are bringing a tent and have space for another camper; is anyone else wearing pink to the rehearsal dinner; is anyone renting a car from JFK, can i ride with you and split the cost)
+
+## Timeline 
+
+![timeline](./assets/Screenshot%202025-04-01%20at%2010.32.45 AM.png)
