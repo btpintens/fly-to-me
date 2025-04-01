@@ -17,7 +17,7 @@ This app is a supplementary tool for people hosting events; it helps them track 
 ![Initial Landing View](./assets/Screenshot%202025-03-31%20at%2012.15.09 PM.png)
 
 ### Page 2
-![Create or Edit Page](./assets/Screenshot%202025-03-31%20at%203.38.19 PM.png)
+![Create or Edit Page](./assets/Screenshot%202025-04-01%20at%209.56.03 AM.png)
 
 ### Page 3
 ![Main Page](./assets/Screenshot%202025-03-31%20at%2012.15.25 PM.png
