@@ -1,0 +1,32 @@
+{
+  "name": "fly-to-me",
+  "version": "1.0.0",
+  "description": "![These friends are having fun on an airplane](./assets/Screenshot%202025-03-31%20at%2012.29.36 PM.png)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btpintens/fly-to-me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/btpintens/fly-to-me/issues"
+  },
+  "homepage": "https://github.com/btpintens/fly-to-me#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "env": "^0.0.2",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.13.1",
+    "morgan": "^1.10.0"
+  }
+}
