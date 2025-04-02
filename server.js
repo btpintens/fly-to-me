@@ -9,12 +9,12 @@ import "./db/connection.js";
 
 const app = express();
 const port = process.env.PORT ? process.env.PORT : "3000";
-//const isSignedIn = require('./middleware/is-signed-in.js');
-//const passUserToView = require('./middleware/pass-user-to-view.js');
+import { isLoggedIn } from "./middleware/is-logged-in.js";
+import { passUserToView } from "./middleware/pass-user-to-view.js";
 
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -23,18 +23,32 @@ app.use(
   })
 );
 
-app.use(passUserToView); 
+app.use(passUserToView);
 
-app.get('/', (req, res) => {
-    res.render('index.ejs', {
+app.use("/auth", authController);
+app.use(isLoggedIn);
+// routes for events
+
+app.get("/events", (req, res) => {
+    res.render("events.ejs", {
       user: req.session.user,
+      events: []
     });
   });
   
-  app.use('/auth', authController);
-  app.use(isLoggedIn);
-  
-  app.listen(port, () => {
-    console.log(`The express app is ready on port ${port}!`);
+app.get("/new", (req, res) => {
+    res.render("new.ejs", {
+user: req.session.user, 
+    });
+});
+
+app.get('/:eventId', (req, res) => {
+    const index = req.params.eventId;
+    res.render('show.ejs', {
+      event: events[index]
+    });
   });
-  
+
+app.listen(port, () => {
+  console.log(`The express app is ready on port ${port}!`);
+});

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 mongoose.connect(process.env.MONGODB_URI);
 
-Mongoose.connection.on("connected", ()=> {
+mongoose.connection.on("connected", ()=> {
     console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
-    
+
 });

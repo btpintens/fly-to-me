@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= event.name %></title>
+</head>
+<body>
+    <h1><%= event.name %></h1>
+    <form action="/events" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" />
+
+        <label for="startDate">Start Date</label>
+        <input type="date" name="startDate" id="startDate" />
+
+        <label for="endDate">End Date</label>
+        <input type="date" name="endDate" id="endDate" />
+
+        <label for="guests">Guests</label>
+        <input type="string" name="Guests" id="guests"/>
+</body>
+</html>
