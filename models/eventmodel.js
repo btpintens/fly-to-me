@@ -11,7 +11,7 @@ const eventSchema = new mongoose.Schema({
   endDate: {
     type: Date,
   },
-  guests: [{type: mongoose.Schema.Types.ObjectId, ref: "Guest"}],
+  guests: [{ type: mongoose.Schema.Types.ObjectId, ref: "Guest" }],
 });
 
 const Event = mongoose.model("Event", eventSchema);

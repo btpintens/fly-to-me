@@ -7,7 +7,11 @@
 </head>
 <body>
     <h1><%= event.name %></h1>
-    <form action="/events" method="POST">
+    <form action="/event/<%= event._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= event.name %></button>
+      </form>
+      <a href="/event/<%= event._id %>/edit">Edit Event</a>
+      <a href="/event">Back to Fruits</a>
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" />
 

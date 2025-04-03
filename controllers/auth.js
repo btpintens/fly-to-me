@@ -74,7 +74,7 @@ router.post("/log-in", async (req, res) => {
     console.log("User logged in:", req.session.user);
 
     // Redirect to /events after successful login
-    res.redirect("/events");
+    res.redirect("/event");
   } catch (error) {
     console.log(error);
     res.redirect("/auth/log-in");  // In case of error, redirect back to the login page
