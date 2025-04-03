@@ -11,9 +11,9 @@ const eventSchema = new mongoose.Schema({
   endDate: {
     type: Date,
   },
-  guests: [guestSchema],
+  guests: [{type: mongoose.Schema.Types.ObjectId, ref: "Guest"}],
 });
 
-const Event = mongoose.model("events", eventSchema)
+const Event = mongoose.model("Event", eventSchema);
 
-export default Event
+export default Event; 

@@ -2,7 +2,7 @@
   "name": "fly-to-me",
   "version": "1.0.0",
   "description": "![These friends are having fun on an airplane](./assets/Screenshot%202025-03-31%20at%2012.29.36 PM.png)",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

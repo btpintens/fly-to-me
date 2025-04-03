@@ -10,13 +10,13 @@
     <h1>Welcome, <%= user.username %>!</h1>
     <ul>
       <% events.forEach((event, index) => { %>
-        <a href="/<%= index %>">
+        <a href="events/<%= index %>">
           <li><%= event.name %></li>
         </a>
       <% }); %>
     </ul>
     <p>
-    <a href="/new">Create New Event</a>
+    <a href="/create"><button>Create New Event</button></a>
   </p>
     <p>
       <a href="/auth/sign-out">Sign out</a>
