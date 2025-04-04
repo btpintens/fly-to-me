@@ -1,6 +1,4 @@
 import express from "express";
-import bcrypt from "bcrypt";
-import User from "../models/userModel.js";
 import Event from "../models/eventModel.js"; // relative path to models/eventModel.js
 
 const router = express.Router();
@@ -54,7 +52,7 @@ router.post("/create", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const event = await Event.findById(id);
+    const event = await Event.findById(id).populate("guests");
 
     if (!event) {
       return res.status(404).send("Event not found");

@@ -9,9 +9,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event"}],
+  events: [{ type: mongoose.Schema.Types.ObjectId, ref: "events"}],
 });
 
-const User = mongoose.model("User", userSchema)
+const User = mongoose.model("users", userSchema)
 
 export default User

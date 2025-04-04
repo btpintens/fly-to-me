@@ -1,27 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= event.name %></title>
-</head>
-<body>
+    <style>
+      #guest-form {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
     <h1><%= event.name %></h1>
-    <p><%= event.startDate  %></p>
-    <p><%= event.endDate %></p>
+    <p><%= event.startDate.toLocaleDateString("en-US") %></p>
+    <p><%= event.endDate.toLocaleDateString("en-US") %></p>
+    <h3>Guests</h3>
     <% event.guests.forEach((guest) => { %>
-      <p><%= guest.name %></p>
+      <div>
+        <p><%= guest.name %></p>
+        <button>Edit Guest</button>
+
+        <form action="/guests/<%= guest._id %>/event/<%= event._id %>?_method=DELETE" method="POST">
+          <button type="submit">Remove Guest</button>
+        </form>
+      </div>
     <% }) %>
 
     <form action="/events/<%= event._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete <%= event.name %></button>
+      <button type="submit">Delete <%= event.name %></button>
+    </form>
+
+    <!-- Button to Show the Guest Form -->
+    <button onclick="showGuestForm()">Add Guest</button>
+
+    <!-- Hidden Guest Form -->
+    <form id="guest-form" action="/guests" method="POST">
+      <div class="form-section">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required />
+      </div>
+
+      <div class="form-section">
+        <label for="etaHour">ETA Hour:</label>
+        <input type="number" name="etaHour" min="0" max="23" required />
+      </div>
+
+      <div class="form-section">
+        <label for="etaMinutes">ETA Minutes:</label>
+        <input type="number" name="etaMinutes" min="0" max="59" required />
+      </div>
+
+      <div class="form-section">
+        <label for="transportMethod">Transport Method:</label>
+        <select name="transportMethod" required>
+          <option value="">Select one</option>
+          <option value="car">Car</option>
+          <option value="train">Train</option>
+          <option value="bus">Bus</option>
+          <option value="plane">Plane</option>
+          <option value="boat">Boat</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <label for="rsvp">RSVP:</label>
+        <input type="checkbox" name="rsvp" value="true" />
+      </div>
+      <input type="hidden" value="<%= event._id %>" name="eventId">
+
+      <button type="submit">Submit Guest</button>
     </form>
 
     <a href="/events/<%= event._id %>/edit">Edit Event</a>
     <a href="/events">Back to Events</a>
-</body>
-</html>
 
+    <script>
+      function showGuestForm() {
+        document.getElementById("guest-form").style.display = "block";
+      }
+    </script>
+  </body>
+</html>
 
 <!-- <label for="name">Name:</label>
         <input type="text" name="name" id="name" />

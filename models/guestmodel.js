@@ -8,6 +8,6 @@ const guestSchema = new mongoose.Schema({
     rsvp: {type: Boolean, default: false}
 });
 
-const Guest = mongoose.model("Guest", guestSchema)
+const Guest = mongoose.model("guests", guestSchema)
 
 export default Guest

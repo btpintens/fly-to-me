@@ -7,6 +7,7 @@ import authController from "./controllers/auth.js";
 import methodOverride from "method-override";
 import "./db/connection.js";
 import eventController from "./controllers/event.js";
+import guestController from "./controllers/guest.js"
 import { isLoggedIn } from "./middleware/is-logged-in.js";
 import { passUserToView } from "./middleware/pass-user-to-view.js";
 
@@ -38,6 +39,7 @@ app.use("/auth", authController);  // Authentication routes (sign-in, sign-up, s
 app.use(isLoggedIn);  // Ensure the user is logged in for all routes below
 
 app.use("/events", eventController);  // Event-related routes
+app.use("/guests", guestController);  // Guest-related routes
 
 // Start the server
 app.listen(port, () => {
