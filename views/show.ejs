@@ -20,7 +20,9 @@
     <% event.guests.forEach((guest) => { %>
       <div>
         <p><%= guest.name %></p>
-        <button>Edit Guest</button>
+        <a href="/guests/<%= guest._id %>/events/<%= event._id %>">
+          <button>Edit Guest</button>
+        </a>
 
         <form action="/guests/<%= guest._id %>/events/<%= event._id %>?_method=DELETE" method="POST">
           <button type="submit">Remove Guest</button>

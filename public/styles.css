@@ -1,43 +1,102 @@
-/* public/styles.css */
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap');
+
+:root {
+  --burnt-orange: #cc5500;
+  --mustard-yellow: #e1b12c;
+  --teal: #008080;
+  --sky-blue: #87ceeb;
+  --beige: #f5f5dc;
+  --cream: #fff9f0;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: #333;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  color: var(--burnt-orange);
+  margin-bottom: 0.5em;
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 6px solid var(--mustard-yellow);
+}
+
+.button {
+  background-color: var(--teal);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--burnt-orange);
+}
+
+.divider {
+  height: 2px;
+  background-image: repeating-linear-gradient(90deg, var(--mustard-yellow), var(--mustard-yellow) 10px, transparent 10px, transparent 20px);
+  margin: 2rem 0;
+  opacity: 0.5;
+}
+
+/* Accent styles */
+.passport-stamp {
+  font-family: var(--font-heading);
+  color: var(--sky-blue);
+  font-size: 1.2rem;
+  transform: rotate(-5deg);
+  opacity: 0.7;
+  margin-top: 1rem;
+}
+
+a {
+    color: var(--burnt-orange);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
   }
   
-  header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
+  a:hover {
+    color: var(--mustard-yellow);
+    text-decoration: underline;
+  }
+
+  .nav-link {
+    color: var(--teal);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 1rem;
   }
   
-  .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .nav-link:hover {
+    color: var(--burnt-orange);
   }
   
-  form input,
-  form button {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  form button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
   

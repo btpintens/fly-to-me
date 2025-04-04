@@ -10,6 +10,7 @@ import eventController from "./controllers/event.js";
 import guestController from "./controllers/guest.js"
 import { isLoggedIn } from "./middleware/is-logged-in.js";
 import { passUserToView } from "./middleware/pass-user-to-view.js";
+import expressLayouts from "express-ejs-layouts";
 
 const app = express();
 const port = process.env.PORT || 3000;  // Default to 3000 if no port is specified
@@ -23,6 +24,8 @@ app.set("view engine", "ejs");  // Setting EJS as the template engine
 
 //serve static files 
 app.use(express.static("public"));
+app.use(expressLayouts);
+app.set('layout', 'layout');
 
 // Session setup
 app.use(
