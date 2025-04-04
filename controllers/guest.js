@@ -7,7 +7,6 @@ const router = express.Router();
 router.post("/", async (req, res) => {
     try {
         const { name, etaHour, etaMinutes, transportMethod, rsvp, eventId } = req.body;
-        console.log("Event ID: ", eventId)
 
         const newGuest = await Guest.create({
             name,
@@ -17,10 +16,7 @@ router.post("/", async (req, res) => {
             rsvp: rsvp === "true" || rsvp === "on"
         })
 
-        console.log("New Guest: ", newGuest)
-
         const event = await Event.findById(eventId)
-        console.log("Found Event: ", event)
         if (!event) {
             return res.status(404).send("Event not found")
         }
@@ -32,6 +28,23 @@ router.post("/", async (req, res) => {
     } catch(err){
         console.error(err)
         res.status(500).send("Failed to create a guest")
+    }
+})
+
+router.delete("/:guestId/events/:eventId", async (req, res) => {
+    try {
+        console.log("Im in delete guest requst")
+        const { guestId, eventId } = req.params;
+        await Guest.findByIdAndDelete(guestId)
+
+        await Event.findByIdAndUpdate(eventId, {
+            $pull: {guests: guestId}
+        })
+
+        res.redirect(`/events/${eventId}`)
+    } catch (error) {
+        console.error(error)
+        res.status(500).send("Error deleting guest")
     }
 })
 
