@@ -9,14 +9,15 @@
   <% if (user) { %>
     <h1>Welcome, <%= user.username %>!</h1>
     <ul>
-      <% events.forEach((event, index) => { %>
-        <a href="events/<%= index %>">
-          <li><%= event.name %></li>
-        </a>
-      <% }); %>
-    </ul>
+      <% events.forEach(event => { %>
+        <div>
+            <h2><a href="/events/<%= event._id %>"><%= event.name %></a></h2>
+            
+        </div>
+    <% }) %>
+    
     <p>
-    <a href="/event/create"><button>Create New Event</button></a>
+    <a href="/events/create"><button>Create New Event</button></a>
   </p>
     <p>
       <a href="/auth/sign-out">Sign out</a>
@@ -28,13 +29,5 @@
       <a href="/auth/log-in">Log in</a>.
     </p>
   <% } %>
-
-  <form action="/auth/log-in" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required />
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required />
-    <button type="submit">Log in</button>
-  </form>
 </body>
 </html>

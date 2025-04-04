@@ -4,6 +4,7 @@ import morgan from "morgan";
 import session from "express-session";
 import express from "express";
 import authController from "./controllers/auth.js";
+import methodOverride from "method-override";
 import "./db/connection.js";
 import eventController from "./controllers/event.js";
 import { isLoggedIn } from "./middleware/is-logged-in.js";
@@ -14,6 +15,7 @@ const port = process.env.PORT || 3000;  // Default to 3000 if no port is specifi
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));  // This middleware handles form data correctly
+app.use(methodOverride("_method")); // This middleware allows us to make PUT and DELETE requests from our form
 app.use(express.json());  // This allows JSON data to be sent with POST requests
 app.use(morgan("dev"));  // Logging requests to the console
 app.set("view engine", "ejs");  // Setting EJS as the template engine
@@ -35,7 +37,7 @@ app.use(passUserToView);
 app.use("/auth", authController);  // Authentication routes (sign-in, sign-up, sign-out)
 app.use(isLoggedIn);  // Ensure the user is logged in for all routes below
 
-app.use("/event", eventController);  // Event-related routes
+app.use("/events", eventController);  // Event-related routes
 
 // Start the server
 app.listen(port, () => {

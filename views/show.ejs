@@ -7,12 +7,23 @@
 </head>
 <body>
     <h1><%= event.name %></h1>
-    <form action="/event/<%= event._id %>?_method=DELETE" method="POST">
+    <p><%= event.startDate  %></p>
+    <p><%= event.endDate %></p>
+    <% event.guests.forEach((guest) => { %>
+      <p><%= guest.name %></p>
+    <% }) %>
+
+    <form action="/events/<%= event._id %>?_method=DELETE" method="POST">
         <button type="submit">Delete <%= event.name %></button>
-      </form>
-      <a href="/event/<%= event._id %>/edit">Edit Event</a>
-      <a href="/event">Back to Fruits</a>
-        <label for="name">Name:</label>
+    </form>
+
+    <a href="/events/<%= event._id %>/edit">Edit Event</a>
+    <a href="/events">Back to Events</a>
+</body>
+</html>
+
+
+<!-- <label for="name">Name:</label>
         <input type="text" name="name" id="name" />
 
         <label for="startDate">Start Date</label>
@@ -22,8 +33,4 @@
         <input type="date" name="endDate" id="endDate" />
 
         <label for="guests">Guests</label>
-        <input type="string" name="Guests" id="guests"/>
-
-        <a href="/events"><button>Back to My Events</button></a>
-</body>
-</html>
+        <input type="string" name="Guests" id="guests"/> -->
