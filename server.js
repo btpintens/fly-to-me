@@ -21,6 +21,9 @@ app.use(express.json());  // This allows JSON data to be sent with POST requests
 app.use(morgan("dev"));  // Logging requests to the console
 app.set("view engine", "ejs");  // Setting EJS as the template engine
 
+//serve static files 
+app.use(express.static("public"));
+
 // Session setup
 app.use(
   session({
