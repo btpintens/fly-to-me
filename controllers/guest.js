@@ -6,13 +6,14 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { name, etaHour, etaMinutes, transportMethod, rsvp, eventId } =
+    const { name, etaHour, etaMinutes, etaSuffix, transportMethod, rsvp, eventId } =
       req.body;
 
     const newGuest = await Guest.create({
       name,
       etaHour,
       etaMinutes,
+      etaSuffix,
       transportMethod,
       rsvp: rsvp === "true" || rsvp === "on",
     });
@@ -34,7 +35,7 @@ router.post("/", async (req, res) => {
 
 router.delete("/:guestId/events/:eventId", async (req, res) => {
   try {
-    console.log("Im in delete guest requst");
+    console.log("delete guest request");
     const { guestId, eventId } = req.params;
     await Guest.findByIdAndDelete(guestId);
 
@@ -56,7 +57,7 @@ router.get("/:guestId/events/:eventId", async (req, res) => {
 
 router.put("/:guestId/edit", async (req, res) => {
   const { guestId } = req.params;
-  const { name, etaHour, etaMinutes, transportMethod, rsvp, eventId } =
+  const { name, etaHour, etaMinutes, etaSuffix, transportMethod, rsvp, eventId } =
     req.body;
 
   try {
@@ -66,6 +67,7 @@ router.put("/:guestId/edit", async (req, res) => {
         name,
         etaHour,
         etaMinutes,
+        etaSuffix,
         transportMethod,
         rsvp: rsvp === "true" || rsvp === "on",
       },

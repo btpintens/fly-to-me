@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
+  <title>Fly To Me</title>
   <link rel="stylesheet" href="/styles.css">
-
 </head>
-<body>
-  <h1>Welcome to Fly to Me!</h1>
-  
-  <% if (user) { %>
-    <p>Welcome, <%= user.username %>! <a href="/auth/sign-out">Sign out</a></p>
-    <p><a href="/events">Go to events</a></p>
-  <% } else { %>
-    <p><a href="/auth/log-in">Log In</a> | <a href="/auth/sign-up">Sign Up</a></p>
-  <% } %>
+<body class="landing-page">
+  <div class="landing-overlay">
+    <h1>Welcome to Fly To Me!</h1>
+    <div class="divider"></div>
 
+    <% if (user) { %>
+      <p class="passport-stamp">Hello, <%= user.username %> 👋</p>
+      <a href="/events" class="button">Go to Events</a>
+      <p style="margin-top: 1rem;"><a href="/auth/sign-out" class="nav-link">Sign out</a></p>
+    <% } else { %>
+      <p><a href="/auth/log-in" class="button">Log In</a></p>
+      <p><a href="/auth/sign-up" class="button">Sign Up</a></p>
+    <% } %>
+  </div>
+
+  <div class="footer">
+    Thank you for traveling with <strong>Fly To Me</strong> ✨<br>
+    © <%= new Date().getFullYear() %> Your Name or Team Name
+  </div>
+  
 </body>
 </html>
+

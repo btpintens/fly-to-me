@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= event.name %></title>
-    <link rel="stylesheet" href="/styles.css">
-
+    <link rel="stylesheet" href="/styles.css" />
     <style>
       #guest-form {
         display: none;
@@ -13,70 +12,114 @@
     </style>
   </head>
   <body>
-    <h1><%= event.name %></h1>
-    <p><%= event.startDate.toLocaleDateString("en-US") %></p>
-    <p><%= event.endDate.toLocaleDateString("en-US") %></p>
-    <h3>Guests</h3>
-    <% event.guests.forEach((guest) => { %>
-      <div>
-        <p><%= guest.name %></p>
-        <a href="/guests/<%= guest._id %>/events/<%= event._id %>">
-          <button>Edit Guest</button>
-        </a>
+    <% 
+    function formatTime(date) {
+      const d = new Date(date);
+      let hours = d.getHours();
+      const minutes = d.getMinutes().toString().padStart(2, '0');
+      const suffix = hours >= 12 ? 'p.m.' : 'a.m.';
+      hours = hours % 12 || 12;
+      return `${hours}:${minutes} ${suffix}`;
+    }
 
-        <form action="/guests/<%= guest._id %>/events/<%= event._id %>?_method=DELETE" method="POST">
-          <button type="submit">Remove Guest</button>
+    function formatGuestTime(hour, minutes, suffix) {
+      const paddedMinutes = minutes?.toString().padStart(2, '0') || "00";
+      return `${hour || "?"}:${paddedMinutes} ${suffix || ""}`;
+    }
+  %>
+    <div class="container">
+      <div class="boarding-pass">
+        <h2><%= event.name %> 🧳</h2>
+        <div class="divider"></div>
+        <div class="info-line">
+          <span
+            ><strong>Start:</strong> <%=
+            event.startDate.toLocaleDateString("en-US") %></span
+          >
+          <span><strong>Time:</strong> <%= formatTime(event.startDate) %></span>
+        </div>
+        <div class="info-line">
+          <span
+            ><strong>End:</strong> <%= event.endDate.toLocaleDateString("en-US")
+            %></span
+          >
+          <span><strong>Time:</strong> <%= formatTime(event.endDate) %></span>
+        </div>
+      </div>
+
+      <h3 class="section-label">Guests</h3>
+      <% event.guests.forEach((guest) => { %>
+      <div class="card">
+        <p>
+          <strong><%= guest.name %></strong> arrives at <%=
+          formatGuestTime(guest.etaHour, guest.etaMinutes, guest.etaSuffix) %>
+          via <%= guest.transportMethod %>.
+        </p>
+        <a href="/guests/<%= guest._id %>/events/<%= event._id %>"
+          ><button class="button">Edit Guest</button></a
+        >
+        <form
+          action="/guests/<%= guest._id %>/events/<%= event._id %>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit" class="button">Remove Guest</button>
         </form>
       </div>
-    <% }) %>
+      <% }) %>
 
-    <form action="/events/<%= event._id %>?_method=DELETE" method="POST">
-      <button type="submit">Delete <%= event.name %></button>
-    </form>
+      <div class="divider"></div>
 
-    <!-- Button to Show the Guest Form -->
-    <button onclick="showGuestForm()">Add Guest</button>
+      <button class="button" onclick="showGuestForm()">Add Guest</button>
 
-    <!-- Hidden Guest Form -->
-    <form id="guest-form" action="/guests" method="POST">
-      <div class="form-section">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required />
-      </div>
+      <form id="guest-form" action="/guests" method="POST" class="card">
+        <div class="form-section">
+          <label for="name">Name:</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="form-section">
+          <label for="etaHour">ETA Hour:</label>
+          <input type="number" name="etaHour" min="0" max="23" required />
+        </div>
+        <div class="form-section">
+          <label for="etaMinutes">ETA Minutes:</label>
+          <input type="number" name="etaMinutes" min="0" max="59" required />
+        </div>
+        <div class="form-section">
+          <label for="etaSuffix">Arrival Time (a.m./p.m.):</label>
+          <select name="etaSuffix" required>
+            <option disabled selected value="">Select a time</option>
+            <option value="a.m.">a.m.</option>
+            <option value="p.m.">p.m.</option>
+          </select>
+        </div>
+        <div class="form-section">
+          <label for="transportMethod">Transport Method:</label>
+          <select name="transportMethod" required>
+            <option value="">Select one</option>
+            <option value="car">Car</option>
+            <option value="train">Train</option>
+            <option value="bus">Bus</option>
+            <option value="plane">Plane</option>
+            <option value="boat">Boat</option>
+          </select>
+        </div>
+        <div class="form-section">
+          <label for="rsvp">RSVP:</label>
+          <input type="checkbox" name="rsvp" value="true" />
+        </div>
+        <input type="hidden" value="<%= event._id %>" name="eventId" />
+        <button type="submit" class="button">Submit Guest</button>
+      </form>
 
-      <div class="form-section">
-        <label for="etaHour">ETA Hour:</label>
-        <input type="number" name="etaHour" min="0" max="23" required />
-      </div>
+      <div class="divider"></div>
+      <a href="/events/<%= event._id %>/edit" class="button">Edit Event</a>
+      <a href="/events" class="nav-link">Back to Events</a>
+    </div>
 
-      <div class="form-section">
-        <label for="etaMinutes">ETA Minutes:</label>
-        <input type="number" name="etaMinutes" min="0" max="59" required />
-      </div>
-
-      <div class="form-section">
-        <label for="transportMethod">Transport Method:</label>
-        <select name="transportMethod" required>
-          <option value="">Select one</option>
-          <option value="car">Car</option>
-          <option value="train">Train</option>
-          <option value="bus">Bus</option>
-          <option value="plane">Plane</option>
-          <option value="boat">Boat</option>
-        </select>
-      </div>
-
-      <div class="form-section">
-        <label for="rsvp">RSVP:</label>
-        <input type="checkbox" name="rsvp" value="true" />
-      </div>
-      <input type="hidden" value="<%= event._id %>" name="eventId">
-
-      <button type="submit">Submit Guest</button>
-    </form>
-
-    <a href="/events/<%= event._id %>/edit">Edit Event</a>
-    <a href="/events">Back to Events</a>
+    <div class="footer">
+      Thank you for traveling with <strong>Fly To Me</strong> ✨<br />
+      © <%= new Date().getFullYear() %> Your Name or Team Name
+    </div>
 
     <script>
       function showGuestForm() {

@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Guest</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-    <h2>Edit Guest</h2>
-    <form id="guest-form" action="/guests/<%= guest._id %>/edit?_method=PUT" method="POST">
+  <div class="container">
+    <h1>Edit Guest Info</h1>
+    <div class="divider"></div>
+
+    <div class="card">
+      <form id="guest-form" action="/guests/<%= guest._id %>/edit?_method=PUT" method="POST">
         <div class="form-section">
           <label for="name">Name:</label>
           <input type="text" name="name" value="<%= guest.name %>" required />
         </div>
-      
+
         <div class="form-section">
           <label for="etaHour">ETA Hour:</label>
           <input type="number" name="etaHour" min="0" max="23" value="<%= guest.etaHour %>" required />
         </div>
-      
+
         <div class="form-section">
           <label for="etaMinutes">ETA Minutes:</label>
           <input type="number" name="etaMinutes" min="0" max="59" value="<%= guest.etaMinutes %>" required />
         </div>
-      
+
         <div class="form-section">
-          <label for="transportMethod">Transport Method:</label>
-          <select name="transportMethod" required>
-            <option value="">Select one</option>
-            <% ["car", "train", "bus", "plane", "boat"].forEach(method => { %>
-              <option value="<%= method %>" <%= guest.transportMethod === method ? "selected" : "" %>><%= method.charAt(0).toUpperCase() + method.slice(1) %></option>
-            <% }) %>
+          <label for="etaSuffix">Arrival Time (a.m./p.m.):</label>
+          <select name="etaSuffix" id="etaSuffix" required>
+            <option value="a.m." <%= guest.etaSuffix === 'a.m.' ? 'selected' : '' %>>a.m.</option>
+            <option value="p.m." <%= guest.etaSuffix === 'p.m.' ? 'selected' : '' %>>p.m.</option>
           </select>
         </div>
-      
+
+        <div class="form-section">
+          <label for="transportMethod">Transport Method:</label>
+          <input type="text" name="transportMethod" value="<%= guest.transportMethod %>" required />
+        </div>
+
         <div class="form-section">
           <label for="rsvp">RSVP:</label>
-          <input type="checkbox" name="rsvp" value="true" <%= guest.rsvp ? "checked" : "" %> />
+          <input type="checkbox" name="rsvp" <%= guest.rsvp ? 'checked' : '' %> />
         </div>
-      
-        <input type="hidden" value="<%= eventId %>" name="eventId" />
-        <button type="submit">Update Guest</button>
+
+        <button type="submit" class="button">Save Guest</button>
       </form>
+    </div>
+
+    <a href="/events" class="nav-link">Back to Events</a>
+  </div>
 </body>
 </html>

@@ -5,31 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fly To Me</title>
   <link rel="stylesheet" href="/styles.css">
-
 </head>
 <body>
-  <% if (user) { %>
-    <h1>Welcome, <%= user.username %>!</h1>
-    <ul>
+  <div class="container">
+    <% if (user) { %>
+      <h1>Welcome, <%= user.username %>!</h1>
+      <div class="divider"></div>
+
       <% events.forEach(event => { %>
-        <div>
-            <h2 class="event-title"><a href="/events/<%= event._id %>"><%= event.name %></a></h2>
-            
+        <div class="boarding-pass">
+          <h2><%= event.name %> ✈️</h2>
+          <div class="divider"></div>
+          <div class="info-line">
+            <span><strong>Date:</strong> <%= event.startDate.toLocaleDateString("en-US") %></span>
+            <span><strong>Guests:</strong> <%= event.guests.length %></span>
+          </div>
+          <div class="info-line">
+            <span><strong>Location:</strong> TBD</span>
+            <span><a href="/events/<%= event._id %>" class="button">View</a></span>
+          </div>
         </div>
-    <% }) %>
-    
-    <p>
-    <a href="/events/create"><button>Create New Event</button></a>
-  </p>
-    <p>
-      <a href="/auth/sign-out">Sign out</a>
-    </p>
-  <% } else { %>
-    <h1>Fly To Me</h1>
-    <p>
-      <a href="/auth/sign-up">Sign up</a> or
-      <a href="/auth/log-in">Log in</a>.
-    </p>
-  <% } %>
+      <% }) %>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="/events/create" class="button" style="margin-right: 1rem;">Create New Event</a>
+        <a href="/auth/sign-out" class="button">Sign out</a>
+      </div>
+    <% } else { %>
+      <h1>Fly To Me</h1>
+      <p><a href="/auth/sign-up" class="button">Sign up</a> or <a href="/auth/log-in" class="button">Log in</a></p>
+    <% } %>
+  </div>
+  <div class="footer">
+    Thank you for traveling with <strong>Fly To Me</strong> ✨<br>
+    © <%= new Date().getFullYear() %> Your Name or Team Name
+  </div>
+  
 </body>
 </html>
+
+
+
