@@ -4,6 +4,10 @@ import User from "../models/userModel.js";
 
 const router = express.Router();
 
+//Render landing page 
+router.get("/", (req, res) => {
+  res.render("auth/index");
+})
 // Render Sign Up Page
 router.get("/sign-up", (req, res) => {
   res.render("auth/sign-up.ejs");
@@ -17,7 +21,7 @@ router.get("/log-in", (req, res) => {
 // Handle User Sign Out (POST only)
 router.post("/logout", (req, res) => {
   req.session.destroy();
-    res.redirect("/");
+    res.redirect("/auth");
 });
 
 // Handle User Sign Up
