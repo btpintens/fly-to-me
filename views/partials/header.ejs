@@ -1,9 +1,16 @@
 <header>
-  <nav>
-    <ul>
-      <a href="/events" class="nav-link">Events</a>
-      <a href="/events/new" class="nav-link">Create</a>
-      <a href="/logout" class="nav-link">Logout</a>
-    </ul>
-  </nav>
-</header>
+    <nav>
+      <ul>
+        <a href="/events" class="nav-link">Events</a>
+        <a href="/events/create" class="nav-link">Create</a>
+        <li>
+        <form action="/auth/logout" method="POST" style="display: inline;">
+          <button type="submit" class="nav-link" style="background: none; border: none; cursor: pointer;">
+            Logout
+          </button>
+        </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  

@@ -15,6 +15,11 @@ import expressLayouts from "express-ejs-layouts";
 const app = express();
 const port = process.env.PORT || 3000;  // Default to 3000 if no port is specified
 
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self'; script-src 'self'; style-src 'self';");
+  next();
+});
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));  // This middleware handles form data correctly
 app.use(methodOverride("_method")); // This middleware allows us to make PUT and DELETE requests from our form
@@ -42,7 +47,14 @@ app.use(passUserToView);
 
 // Routes
 app.use("/auth", authController);  // Authentication routes (sign-in, sign-up, sign-out)
-app.use(isLoggedIn);  // Ensure the user is logged in for all routes below
+app.use((req, res, next) => {
+  // Allow access to /auth routes before requiring login
+  if (req.path.startsWith("/auth")) {
+    return next();
+  }
+  return isLoggedIn(req, res, next);
+});
+;  // Ensure the user is logged in for all routes below
 
 app.use("/events", eventController);  // Event-related routes
 app.use("/guests", guestController);  // Guest-related routes
