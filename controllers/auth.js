@@ -19,7 +19,7 @@ router.get("/log-in", (req, res) => {
 });
 
 // Handle User Sign Out (POST only)
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy();
     res.redirect("/auth");
 });
