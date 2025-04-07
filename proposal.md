@@ -1,6 +1,6 @@
 # Fly To Me
 
-![These friends are having fun on an airplane](./assets/Screenshot%202025-03-31%20at%2012.29.36 PM.png)
+![These friends are having fun on an airplane](./public/assets/Screenshot%202025-03-31%20at%2012.29.36 PM.png)
 
 ## Application Description
 
@@ -14,13 +14,13 @@ This app is a supplementary tool for people hosting events; it helps them track 
 ## Wire Frames
 
 ### Page 1
-![Initial Landing View](./assets/Screenshot%202025-03-31%20at%2012.15.09 PM.png)
+![Initial Landing View](./public/assets/Screenshot%202025-03-31%20at%2012.15.09 PM.png)
 
 ### Page 2
-![Create or Edit Page](./assets/Screenshot%202025-04-01%20at%209.56.03 AM.png)
+![Create or Edit Page](./public/assets/Screenshot%202025-04-01%20at%209.56.03 AM.png)
 
 ### Page 3
-![Main Page](./assets/Screenshot%202025-03-31%20at%2012.15.25 PM.png
+![Main Page](./public/assets/Screenshot%202025-03-31%20at%2012.15.25 PM.png
 )
 ## MVP 
 * As a user I want to log in and create a new event or edit/delete a current event.
@@ -32,10 +32,10 @@ This app is a supplementary tool for people hosting events; it helps them track 
 * As a user I would like to keep track of people I invited but can not attend (enter a guests name but keep them in a category separate from those that are able to attend).
 
 ## Routes
-![routes](./assets/Screenshot%202025-03-31%20at%204.35.09 PM.png)
+![routes](./public/assets/Screenshot%202025-03-31%20at%204.35.09 PM.png)
 
 ## HTTP 
-![HTTP actions](./assets/Screenshot%202025-03-31%20at%204.31.46 PM.png)
+![HTTP actions](./public/assets/Screenshot%202025-03-31%20at%204.31.46 PM.png)
 
 ## Stretch Goals 
 
@@ -67,4 +67,4 @@ The platform will seamlessly provide information the guests need/want without ne
 
 ## Timeline 
 
-![timeline](./assets/Screenshot%202025-04-01%20at%2010.32.45 AM.png)
+![timeline](./public/assets/Screenshot%202025-04-01%20at%2010.32.45 AM.png)
