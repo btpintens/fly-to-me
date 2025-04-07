@@ -14,7 +14,7 @@
 
       <% events.forEach(event => { %>
         <div class="boarding-pass">
-          <h2><%= event.name %> ✈️</h2>
+          <h2><%= event.name %></h2>
           <div class="divider"></div>
           <div class="info-line">
             <span><strong>Date:</strong> <%= event.startDate.toLocaleDateString("en-US") %></span>
@@ -27,9 +27,9 @@
         </div>
       <% }) %>
 
-      <div style="text-align: center; margin-top: 2rem;">
-        <a href="/events/create" class="button" style="margin-right: 1rem;">Create New Event</a>
-        <a href="/auth/logout" class="button">Sign out</a>
+      <div class="center-button">
+        <a href="/events/create" class="button">Create New Event</a>
+        
       </div>
     <% } else { %>
       <h1>Fly To Me</h1>
@@ -40,7 +40,8 @@
     Thank you for traveling with <strong>Fly To Me</strong> ✨<br>
     © <%= new Date().getFullYear() %> Your Name or Team Name
   </div>
-  
+
+
 </body>
 </html>
 
