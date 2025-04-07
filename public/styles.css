@@ -265,6 +265,15 @@ a:hover {
     opacity: 0.4;
     transform: rotate(-10deg);
   }
+
+  .balloon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px; /* adjust as needed */
+    z-index: 1;
+  }
+  
   
   .corner-ship {
     position: absolute;

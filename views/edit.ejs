@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Event</title>
-    <link rel="stylesheet" href="/styles.css">
-
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <h1>Edit Event</h1>
     <form action="/events/<%= event._id %>/edit?_method=PUT" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="<%= event.name %>" />
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" value="<%= event.name %>" />
 
-        <label for="startDate">Start Date</label>
-        <input type="date" name="startDate" id="startDate" value="<%= startDate  %>" />
+      <label for="startDate">Start Date</label>
+      <input
+        type="date"
+        name="startDate"
+        id="startDate"
+        value="<%= startDate  %>"
+      />
 
-        <label for="endDate">End Date</label>
-        <input type="date" name="endDate" id="endDate" value="<%= endDate %>"/>
+      <label for="endDate">End Date</label>
+      <input type="date" name="endDate" id="endDate" value="<%= endDate %>" />
 
-        <button type="submit">Edit Event</button>
-
+      <button type="submit">Edit Event</button>
     </form>
-    
   </body>
 </html>

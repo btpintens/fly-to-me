@@ -3,6 +3,7 @@
 ![These friends are having fun on an airplane](./assets/Screenshot%202025-03-31%20at%2012.29.36 PM.png)
 
 ## Application Description
+I created Fly to Me as a way to assist the planning and execution of events: birthday parties, weddings, travel, work, etc... For people in charge of organizing these activites, the added responsiblity of having to track and facilitate travel of guests is an unnecessary nightmare. 
 
 This app acts as an assistant to an event host; it helps them track and organize the travel of people attending their event (birthday party, camping trip, wedding shower, etc.) The host will be able to track the invitees who aren’t able to attend vs. those who are. For the guests attending the host can enter and save simple travel information: 
  - are they flying in? if so, what time are they arriving and leaving, and which airline are they using
@@ -36,6 +37,12 @@ This app acts as an assistant to an event host; it helps them track and organize
 
 ## HTTP 
 ![HTTP actions](./assets/Screenshot%202025-03-31%20at%201.21.31 PM.png)
+
+## Technologies Used
+- ChatGPT
+- Node
+- Mongo
+- 
 
 ## Stretch Goals 
 

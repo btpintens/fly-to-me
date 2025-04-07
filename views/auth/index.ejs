@@ -1,35 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fly To Me</title>
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body class="landing-page">
-  <div class="landing-overlay">
-    <h1 class="big-title">Welcome to Fly To Me!</h1>
-    <img src="/assets/welcome-icon.png" alt="Vintage travel icon" class="title-icon">
-<div class="divider"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fly To Me</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="landing-page">
+    <div class="landing-overlay">
+      <h1 class="big-title">Welcome to Fly To Me!</h1>
+      <img
+        src="/assets/welcome-icon.png"
+        alt="Vintage travel icon"
+        class="title-icon"
+      />
+      <div class="divider"></div>
 
-    <% if (typeof user !== "undefined" && user) { %>
+      <% if (typeof user !== "undefined" && user) { %>
       <p class="passport-stamp">Hello, <%= user.username %> 👋</p>
       <a href="/events" class="button">Go to Events</a>
-      <p style="margin-top: 1rem;"><a href="/auth/logout" class="nav-link">Logout</a></p>
-    <% } else { %>
+      <p style="margin-top: 1rem">
+        <a href="/auth/logout" class="nav-link">Logout</a>
+      </p>
+      <% } else { %>
       <div class="auth-buttons">
-      <p><a href="/auth/log-in" class="button">Log In</a></p>
-      <p><a href="/auth/sign-up" class="button">Sign Up</a></p>
-        </div>
+        <p><a href="/auth/log-in" class="button">Log In</a></p>
+        <p><a href="/auth/sign-up" class="button">Sign Up</a></p>
+      </div>
       <% } %>
-  </div>
+    </div>
 
-  <div class="footer">
-    Thank you for traveling with <strong>Fly To Me</strong> ✨<br>
-    © <%= new Date().getFullYear() %> Your Name or Team Name
-  </div>
-  <img src="/assets/corner-ship.png" alt="Ship illustration" class="corner-ship">
+    <div class="footer">
+      Thank you for traveling with <strong>Fly To Me</strong> ✨<br />
+      © <%= new Date().getFullYear() %> Your Name or Team Name
+    </div>
+    <img
+      src="/assets/corner-ship.png"
+      alt="Ship illustration"
+      class="corner-ship"
+    />
 
-</body>
+    <img 
+    src="/assets/hot-air-balloon (1).png"
+    alt="hot-air-balloon"
+    class="balloon"
+  </body>
 </html>
-

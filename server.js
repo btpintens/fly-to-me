@@ -7,30 +7,33 @@ import authController from "./controllers/auth.js";
 import methodOverride from "method-override";
 import "./db/connection.js";
 import eventController from "./controllers/event.js";
-import guestController from "./controllers/guest.js"
+import guestController from "./controllers/guest.js";
 import { isLoggedIn } from "./middleware/is-logged-in.js";
 import { passUserToView } from "./middleware/pass-user-to-view.js";
 import expressLayouts from "express-ejs-layouts";
 
 const app = express();
-const port = process.env.PORT || 3000;  // Default to 3000 if no port is specified
+const port = process.env.PORT || 3000; // Default to 3000 if no port is specified
 
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'; connect-src 'self'; script-src 'self'; style-src 'self';");
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; connect-src 'self'; script-src 'self'; style-src 'self';"
+  );
   next();
 });
 
 // Middleware
-app.use(express.urlencoded({ extended: true }));  // This middleware handles form data correctly
+app.use(express.urlencoded({ extended: true })); // This middleware handles form data correctly
 app.use(methodOverride("_method")); // This middleware allows us to make PUT and DELETE requests from our form
-app.use(express.json());  // This allows JSON data to be sent with POST requests
-app.use(morgan("dev"));  // Logging requests to the console
-app.set("view engine", "ejs");  // Setting EJS as the template engine
+app.use(express.json()); // This allows JSON data to be sent with POST requests
+app.use(morgan("dev")); // Logging requests to the console
+app.set("view engine", "ejs"); // Setting EJS as the template engine
 
-//serve static files 
+//serve static files
 app.use(express.static("public"));
 app.use(expressLayouts);
-app.set('layout', 'layout');
+app.set("layout", "layout");
 
 // Session setup
 app.use(
@@ -38,7 +41,7 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false },  // Set to `true` for HTTPS connections
+    cookie: { secure: false }, // Set to `true` for HTTPS connections
   })
 );
 
@@ -46,21 +49,18 @@ app.use(
 app.use(passUserToView);
 
 // Routes
-app.use("/auth", authController);  // Authentication routes (sign-in, sign-up, sign-out)
+app.use("/auth", authController); // Authentication routes (sign-in, sign-up, sign-out)
 app.use((req, res, next) => {
   // Allow access to /auth routes before requiring login
   if (req.path.startsWith("/auth")) {
     return next();
   }
   return isLoggedIn(req, res, next);
-});
-;  // Ensure the user is logged in for all routes below
-
-app.use("/events", eventController);  // Event-related routes
-app.use("/guests", guestController);  // Guest-related routes
+}); // Ensure the user is logged in for all routes below
+app.use("/events", eventController); // Event-related routes
+app.use("/guests", guestController); // Guest-related routes
 
 // Start the server
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
-

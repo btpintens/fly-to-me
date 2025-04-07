@@ -6,8 +6,15 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const { name, etaHour, etaMinutes, etaSuffix, transportMethod, rsvp, eventId } =
-      req.body;
+    const {
+      name,
+      etaHour,
+      etaMinutes,
+      etaSuffix,
+      transportMethod,
+      rsvp,
+      eventId,
+    } = req.body;
 
     const newGuest = await Guest.create({
       name,
@@ -57,8 +64,15 @@ router.get("/:guestId/events/:eventId", async (req, res) => {
 
 router.put("/:guestId/edit", async (req, res) => {
   const { guestId } = req.params;
-  const { name, etaHour, etaMinutes, etaSuffix, transportMethod, rsvp, eventId } =
-    req.body;
+  const {
+    name,
+    etaHour,
+    etaMinutes,
+    etaSuffix,
+    transportMethod,
+    rsvp,
+    eventId,
+  } = req.body;
 
   try {
     await Guest.findByIdAndUpdate(

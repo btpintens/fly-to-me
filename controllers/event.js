@@ -82,7 +82,11 @@ router.get("/:id/edit", async (req, res) => {
     return res.status(404).send("Event not found");
   }
 
-  res.render("edit", { event, startDate: formatDate(event.startDate),  endDate: formatDate(event.endDate)});
+  res.render("edit", {
+    event,
+    startDate: formatDate(event.startDate),
+    endDate: formatDate(event.endDate),
+  });
 });
 
 router.put("/:id/edit", async (req, res) => {
@@ -95,7 +99,7 @@ router.put("/:id/edit", async (req, res) => {
       return res.send("Name, startDate, and endDate are required fields!");
     }
     // Create a new event with the provided data
-    const event = await Event.findByIdAndUpdate(req.params.id, req.body)
+    const event = await Event.findByIdAndUpdate(req.params.id, req.body);
 
     // Redirect to events page after successful event creation
     res.redirect(`/events/${event._id}`);
@@ -103,7 +107,7 @@ router.put("/:id/edit", async (req, res) => {
     console.error(error); // Log the error for debugging
     res.redirect("/create"); // Redirect back to the form if there's an error
   }
-})
+});
 
 // Route for deleting an event (get and delete)
 router.delete("/:id", async (req, res) => {
