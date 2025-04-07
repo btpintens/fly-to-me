@@ -48,6 +48,7 @@ This app acts as an assistant to an event host; it helps them track and organize
 - Javascript
 - CSS
 - EJS
+- Raul
 
 __Modules__
 - Node
