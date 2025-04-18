@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema({
   events: [{ type: mongoose.Schema.Types.ObjectId, ref: "events"}],
 });
 
+// Model names should be capitalized
 const User = mongoose.model("users", userSchema)
 
 export default User

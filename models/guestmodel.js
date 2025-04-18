@@ -9,6 +9,7 @@ const guestSchema = new mongoose.Schema({
     rsvp: {type: Boolean, default: false}
 });
 
+// Model names should be capitalized
 const Guest = mongoose.model("guests", guestSchema)
 
 export default Guest

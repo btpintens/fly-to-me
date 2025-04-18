@@ -15,6 +15,7 @@ import expressLayouts from "express-ejs-layouts";
 const app = express();
 const port = process.env.PORT || 3000; // Default to 3000 if no port is specified
 
+// Is this necessary?
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
