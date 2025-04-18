@@ -14,6 +14,7 @@ const eventSchema = new mongoose.Schema({
   guests: [{ type: mongoose.Schema.Types.ObjectId, ref: "guests" }],
 });
 
+// Model names should be capitalized
 const Event = mongoose.model("events", eventSchema);
 
 export default Event; 
